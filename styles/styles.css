@@ -7,21 +7,21 @@
 }
 
 body {
-  background-color: lightgray;
+  background-color: var(--app-background);
   display: flex;
   flex-flow: column nowrap;
   width: 150px;
 }
 
 .btnDelete {
-  background-color: #c0392b;
+  background-color: var(--delete-button-bgColor);
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .btnDelete:hover {
-  background-color: #e74c3c;
+  background-color: var(--delete-button-bgColor-hover);
 }
 
 .btnDisabled {
@@ -29,9 +29,9 @@ body {
 }
 
 .btnExport {
-  background-color: #2980b9;
+  background-color: var(--export-button-bgColor);
   border: none;
-  color: snow;
+  color: var(--export-button-fontColor);
   cursor: pointer;
   font-weight: bold;
   height: 100%;
@@ -39,7 +39,7 @@ body {
 }
 
 .btnExport:hover {
-  background-color: #3498db;
+  background-color: var(--export-button-bgColor-hover);
   text-decoration: underline;
 }
 
@@ -66,7 +66,7 @@ body {
 }
 
 .colorContainer:hover {
-  background-color: snow;
+  background-color: var(--color-container-hover);
   font-weight: bold;
 }
 
@@ -93,10 +93,10 @@ form input[type=color] {
 }
 
 form input[type=submit] {
-  background-color: #428d70;
+  background-color: var(--add-button-bgColor);
   border: none;
   border-radius: 5px;
-  color: snow;
+  color: var(--add-button-fontColor);
   cursor: pointer;
   height: 100%;
   padding-left: 15px;
@@ -104,11 +104,11 @@ form input[type=submit] {
 }
 
 form input[type=submit]:hover {
-  background-color: #81bda6;
+  background-color: var(--add-button-bgColor-hover);
 }
 
 .material-symbols-outlined {
-  color: snow;
+  color: var(--delete-button-trashIcon);
   font-variation-settings:
   'FILL' 0,
   'wght' 400,

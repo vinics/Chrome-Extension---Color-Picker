@@ -17,7 +17,6 @@ function extensionLoad() {
       return
     }
 
-
     if (btnExport.classList.contains('btnDisabled')) {
       btnExport.classList.remove('btnDisabled')
     }

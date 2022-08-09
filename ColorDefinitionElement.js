@@ -1,4 +1,3 @@
-
 class ColorDefinitionElement {
   htmlElement = undefined
 

@@ -1,0 +1,13 @@
+:root {
+  --add-button-bgColor: #428d70;
+  --add-button-bgColor-hover: #81bda6;
+  --add-button-fontColor: snow;
+  --app-background: lightgray;
+  --color-container-hover: snow;
+  --delete-button-bgColor: #c0392b;
+  --delete-button-bgColor-hover: #e74c3c;
+  --delete-button-trashIcon: snow;
+  --export-button-bgColor: #2980b9;
+  --export-button-bgColor-hover: #3498db;
+  --export-button-fontColor: snow;
+}
