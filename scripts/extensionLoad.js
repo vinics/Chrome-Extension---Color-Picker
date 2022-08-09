@@ -22,6 +22,7 @@ function extensionLoad() {
     }
 
     const colorCollection = JSON.parse(result.chromeExtensionColorPicker)
+    console.log(colorCollection)
 
     if (colorCollection.length === 0) {
       if (!btnExport.classList.contains('btnDisabled')) {
