@@ -1,0 +1,10 @@
+{
+  "name": "color-picker",
+  "description": "Chrome extension to get colors from websites and images",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "downloads", "scripting", "storage"],
+  "action": {
+    "default_popup": "index.html"
+  }
+}
