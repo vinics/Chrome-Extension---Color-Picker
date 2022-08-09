@@ -1,3 +1,5 @@
+import { form, inputColor, container, btnExport } from './domAssets.js'
+
 class ColorDefinitionElement {
   htmlElement = undefined
 
@@ -85,7 +87,7 @@ class ColorDefinitionElement {
 
       if (colorCollection.some(colorEntry => colorEntry.label == newLabel)) {
         alert('Label already in use')
-        console.error(`Unable to set label ${newLabel}. Already in use.`)
+        console.log(`Unable to set label ${newLabel}. Already in use.`)
         return
       }
 
