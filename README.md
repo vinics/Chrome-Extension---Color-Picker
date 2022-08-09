@@ -59,6 +59,10 @@ As long at least 1 color entry exists, a export button will appear allowing a do
 
 ![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-cssFile.png)
 
+# Special thanks
+I would like to thank all people that made CS50 possible on edX. I was able to learn much more about the foundation of the computer science. This chrome extension was done as the final project required at the end of the course and I much satisfied with my progress througout the experience that is CS50.
+
+My honest thanks to David J. Malan and all of the staff envolved with this amazing work and experience called CS50.
 
 
 
