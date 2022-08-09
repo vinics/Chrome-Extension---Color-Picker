@@ -109,7 +109,12 @@ function handleNewColorEntry(event) {
 
   chrome.storage.local.get([`chromeExtensionColorPicker`], (result) => {
     // Create new color definition element
-    const colorEntry = new ColorDefinitionElement(inputColor.value, undefined, counter)
+    const colorEntry = new ColorDefinitionElement({
+      color: inputColor.value,
+      index: counter,
+      handleColorLabelChange,
+      handleColorDelete
+    })
     counter++
 
     // Check if the element was empty and enables the Export button
