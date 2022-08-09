@@ -58,6 +58,7 @@ class ColorDefinitionElement {
     const colorDefinitionDiv = document.createElement('div')
     colorDefinitionDiv.classList.add('colorViewer')
     colorDefinitionDiv.style.backgroundColor = color
+    colorDefinitionDiv.title = color
 
     // Create child text to show the color title
     const colorDefinitionLabel = document.createElement('span')
