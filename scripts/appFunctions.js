@@ -20,6 +20,13 @@ function handleColorLabelChange(clickEvent) {
   // Get new label text
   const newLabel = window.prompt('Label name: ')
 
+  // Guard against empty label
+  if (newLabel === '') {
+    alert('Color label can\'t be empty')
+    console.log('Attempt to change color entry label to an empty string')
+    return
+  }
+
   // Check if the name is unique
   let colorCollection = []
   chrome.storage.local.get([`chromeExtensionColorPicker`], (result) => {
