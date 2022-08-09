@@ -57,7 +57,7 @@ As long at least 1 color entry exists, a export button will appear allowing a do
 
 ![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-getCss.png)
 
-![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-deleteColorEntry.png)
+![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-cssFile.png)
 
 
 
