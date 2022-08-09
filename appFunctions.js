@@ -17,6 +17,36 @@ function downloadCssFile(fileContent) {
   document.body.removeChild(downloadAnchorTag)
 }
 
+function handleColorLabelClick(clickEvent) {
+  // Get new label text
+  const newLabel = window.prompt('Label name: ')
+
+  // Check if the name is unique
+  let colorCollection = []
+  chrome.storage.local.get([`chromeExtensionColorPicker`], (result) => {
+
+    if (result.chromeExtensionColorPicker) {
+      colorCollection = JSON.parse(result.chromeExtensionColorPicker)
+    }
+
+    if (colorCollection.some(colorEntry => colorEntry.label == newLabel)) {
+      alert('Label already in use')
+      console.log(`Unable to set label ${newLabel}. Already in use.`)
+      return
+    }
+
+    // Find and replace color entry on color collection
+    const colorEntryTarget = colorCollection.find(colorEntry => colorEntry.label == clickEvent.target.innerText)
+    colorEntryTarget.label = newLabel
+
+    // Change color label
+    clickEvent.target.innerText = newLabel
+
+    // Update color collection on storage
+    chrome.storage.local.set({ chromeExtensionColorPicker: JSON.stringify(colorCollection) })
+  })
+}
+
 function handleDelete(clickEvent) {
   // Get color label
   const colorLabel = clickEvent.target.parentElement.children[1].textContent
@@ -104,4 +134,4 @@ function handleNewColorEntry(event) {
   })
 }
 
-export { handleDelete, handleExportToCss, handleNewColorEntry }
+export { handleColorLabelClick, handleDelete, handleExportToCss, handleNewColorEntry }

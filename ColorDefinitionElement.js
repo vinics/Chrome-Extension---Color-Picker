@@ -1,5 +1,4 @@
-import { form, inputColor, container, btnExport } from './domAssets.js'
-import { handleDelete } from './appFunctions.js'
+import { handleColorLabelClick, handleDelete } from './appFunctions.js'
 
 class ColorDefinitionElement {
   htmlElement = undefined
@@ -18,7 +17,7 @@ class ColorDefinitionElement {
     const colorDefinitionLabel = document.createElement('span')
     colorDefinitionLabel.classList.add('colorText')
     colorDefinitionLabel.textContent = label ? label : `color ${index}`
-    colorDefinitionLabel.addEventListener('click', this.handleColorLabelClick)
+    colorDefinitionLabel.addEventListener('click', handleColorLabelClick)
 
     // Add delete button
     const colorDefinitionDelete = document.createElement('button')
@@ -44,37 +43,6 @@ class ColorDefinitionElement {
       label: this.htmlElement.children[1].textContent
     }
   }
-
-  handleColorLabelClick(clickEvent) {
-    // Get new label text
-    const newLabel = window.prompt('Label name: ')
-
-    // Check if the name is unique
-    let colorCollection = []
-    chrome.storage.local.get([`chromeExtensionColorPicker`], (result) => {
-
-      if (result.chromeExtensionColorPicker) {
-        colorCollection = JSON.parse(result.chromeExtensionColorPicker)
-      }
-
-      if (colorCollection.some(colorEntry => colorEntry.label == newLabel)) {
-        alert('Label already in use')
-        console.log(`Unable to set label ${newLabel}. Already in use.`)
-        return
-      }
-
-      // Find and replace color entry on color collection
-      const colorEntryTarget = colorCollection.find(colorEntry => colorEntry.label == clickEvent.target.innerText)
-      colorEntryTarget.label = newLabel
-
-      // Change color label
-      clickEvent.target.innerText = newLabel
-
-      // Update color collection on storage
-      chrome.storage.local.set({ chromeExtensionColorPicker: JSON.stringify(colorCollection) })
-    })
-  }
-
 }
 
 export default ColorDefinitionElement
