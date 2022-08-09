@@ -1,3 +1,9 @@
+import ColorDefinitionElement from "./ColorDefinitionElement.js"
+import { form, inputColor, container, btnExport } from './domAssets.js'
+
+// Global variable to provide a sequencial (unique) numbering to new color entries
+let counter = 1
+
 function handleExportToCss() {
   let colorCollection = []
 
