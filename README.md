@@ -55,7 +55,9 @@ Click on the trash can icon to delete that color entry:
 ## Export to css
 As long at least 1 color entry exists, a export button will appear allowing a download of the named colors as css variables:
 
+![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-getCss.png)
 
+![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-deleteColorEntry.png)
 
 
 
