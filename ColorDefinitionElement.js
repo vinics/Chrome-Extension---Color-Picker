@@ -1,11 +1,14 @@
-import { handleColorLabelClick, handleDelete } from './appFunctions.js'
 
 class ColorDefinitionElement {
   htmlElement = undefined
 
-  constructor(color, label, index) {
+  constructor({ color, index, label, handleColorLabelChange, handleColorDelete}) {
     // Save color
     this.color = color
+
+    // Save handlers
+    this.handleColorLabelChange = handleColorLabelChange ?? (() => {})
+    this.handleColorDelete = handleColorDelete ?? (() => {})
 
     // Create child div showing the color saved
     const colorDefinitionDiv = document.createElement('div')
@@ -17,11 +20,11 @@ class ColorDefinitionElement {
     const colorDefinitionLabel = document.createElement('span')
     colorDefinitionLabel.classList.add('colorText')
     colorDefinitionLabel.textContent = label ? label : `color ${index}`
-    colorDefinitionLabel.addEventListener('click', handleColorLabelClick)
+    colorDefinitionLabel.addEventListener('click', this.handleColorLabelChange)
 
     // Add delete button
     const colorDefinitionDelete = document.createElement('button')
-    colorDefinitionDelete.addEventListener('click', handleDelete)
+    colorDefinitionDelete.addEventListener('click', this.handleColorDelete)
     colorDefinitionDelete.classList.add('material-symbols-outlined')
     colorDefinitionDelete.classList.add('btnDelete')
     colorDefinitionDelete.innerHTML = 'delete'

@@ -1,5 +1,6 @@
 import ColorDefinitionElement from "./ColorDefinitionElement.js"
 import { container, btnExport } from './domAssets.js'
+import { handleColorDelete, handleColorLabelChange } from './appFunctions.js'
 
 // Load saved colors
 function extensionLoad() {
@@ -30,7 +31,13 @@ function extensionLoad() {
     }
 
     colorCollection.forEach(colorEntry => {
-      const element = new ColorDefinitionElement(colorEntry.color, colorEntry.label)
+      const element = new ColorDefinitionElement({
+        color: colorEntry.color,
+        label: colorEntry.label,
+        handleColorDelete,
+        handleColorLabelChange,
+      })
+
       container.appendChild(element.htmlElement)
     })
 

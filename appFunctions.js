@@ -4,7 +4,6 @@ import { inputColor, container, btnExport } from './domAssets.js'
 // Global variable to provide a sequencial (unique) numbering to new color entries
 let counter = 1
 
-
 function downloadCssFile(fileContent) {
   let url = 'colors.css'
 
@@ -17,7 +16,7 @@ function downloadCssFile(fileContent) {
   document.body.removeChild(downloadAnchorTag)
 }
 
-function handleColorLabelClick(clickEvent) {
+function handleColorLabelChange(clickEvent) {
   // Get new label text
   const newLabel = window.prompt('Label name: ')
 
@@ -47,7 +46,7 @@ function handleColorLabelClick(clickEvent) {
   })
 }
 
-function handleDelete(clickEvent) {
+function handleColorDelete(clickEvent) {
   // Get color label
   const colorLabel = clickEvent.target.parentElement.children[1].textContent
 
@@ -134,4 +133,4 @@ function handleNewColorEntry(event) {
   })
 }
 
-export { handleColorLabelClick, handleDelete, handleExportToCss, handleNewColorEntry }
+export { handleColorLabelChange, handleColorDelete, handleExportToCss, handleNewColorEntry }
