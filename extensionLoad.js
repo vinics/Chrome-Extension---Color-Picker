@@ -1,5 +1,5 @@
 import ColorDefinitionElement from "./ColorDefinitionElement.js"
-import { form, inputColor, container, btnExport } from './domAssets.js'
+import { container, btnExport } from './domAssets.js'
 
 // Load saved colors
 function extensionLoad() {

@@ -1,4 +1,5 @@
 import { form, inputColor, container, btnExport } from './domAssets.js'
+import { handleDelete } from './appFunctions.js'
 
 class ColorDefinitionElement {
   htmlElement = undefined
@@ -21,7 +22,7 @@ class ColorDefinitionElement {
 
     // Add delete button
     const colorDefinitionDelete = document.createElement('button')
-    colorDefinitionDelete.addEventListener('click', this.handleDelete)
+    colorDefinitionDelete.addEventListener('click', handleDelete)
     colorDefinitionDelete.classList.add('material-symbols-outlined')
     colorDefinitionDelete.classList.add('btnDelete')
     colorDefinitionDelete.innerHTML = 'delete'
@@ -41,35 +42,6 @@ class ColorDefinitionElement {
     return {
       color: this.htmlElement.children[0].style.backgroundColor,
       label: this.htmlElement.children[1].textContent
-    }
-  }
-
-  handleDelete(clickEvent) {
-    // Get color label
-    const colorLabel = clickEvent.target.parentElement.children[1].textContent
-
-    // Remove element from storage
-    let colorCollection = []
-    chrome.storage.local.get([`chromeExtensionColorPicker`], (result) => {
-
-      if (result.chromeExtensionColorPicker) {
-        colorCollection = JSON.parse(result.chromeExtensionColorPicker)
-      }
-
-      const updatedCollection = colorCollection.filter(colorEntry => colorEntry.label !== colorLabel)
-
-      chrome.storage.local.set({ chromeExtensionColorPicker: JSON.stringify(updatedCollection) })
-    })
-
-    // Remove item from UI
-    for (const element of container.children) {
-      if (element.children[1].textContent == colorLabel) {
-        container.removeChild(element)
-      }
-    }
-
-    if (container.children.length === 0 && !btnExport.classList.contains('btnDisabled')) {
-      btnExport.classList.add('btnDisabled')
     }
   }
 

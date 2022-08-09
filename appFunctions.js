@@ -1,8 +1,50 @@
 import ColorDefinitionElement from "./ColorDefinitionElement.js"
-import { form, inputColor, container, btnExport } from './domAssets.js'
+import { inputColor, container, btnExport } from './domAssets.js'
 
 // Global variable to provide a sequencial (unique) numbering to new color entries
 let counter = 1
+
+
+function downloadCssFile(fileContent) {
+  let url = 'colors.css'
+
+  const downloadAnchorTag = document.createElement('a')
+  downloadAnchorTag.href = 'data:text/plain;charset=UTF-8,' + '' + fileContent
+
+  downloadAnchorTag.download = url.substr(url.lastIndexOf('/') + 1)
+  document.body.appendChild(downloadAnchorTag)
+  downloadAnchorTag.click()
+  document.body.removeChild(downloadAnchorTag)
+}
+
+function handleDelete(clickEvent) {
+  // Get color label
+  const colorLabel = clickEvent.target.parentElement.children[1].textContent
+
+  // Remove element from storage
+  let colorCollection = []
+  chrome.storage.local.get([`chromeExtensionColorPicker`], (result) => {
+
+    if (result.chromeExtensionColorPicker) {
+      colorCollection = JSON.parse(result.chromeExtensionColorPicker)
+    }
+
+    const updatedCollection = colorCollection.filter(colorEntry => colorEntry.label !== colorLabel)
+
+    chrome.storage.local.set({ chromeExtensionColorPicker: JSON.stringify(updatedCollection) })
+  })
+
+  // Remove item from UI
+  for (const element of container.children) {
+    if (element.children[1].textContent == colorLabel) {
+      container.removeChild(element)
+    }
+  }
+
+  if (container.children.length === 0 && !btnExport.classList.contains('btnDisabled')) {
+    btnExport.classList.add('btnDisabled')
+  }
+}
 
 function handleExportToCss() {
   let colorCollection = []
@@ -30,18 +72,6 @@ function handleExportToCss() {
     // Download a file
     downloadCssFile(cssFileContent)
   })
-}
-
-function downloadCssFile(fileContent) {
-  let url = 'colors.css'
-
-  const downloadAnchorTag = document.createElement('a')
-  downloadAnchorTag.href = 'data:text/plain;charset=UTF-8,' + '' + fileContent
-
-  downloadAnchorTag.download = url.substr(url.lastIndexOf('/') + 1)
-  document.body.appendChild(downloadAnchorTag)
-  downloadAnchorTag.click()
-  document.body.removeChild(downloadAnchorTag)
 }
 
 function handleNewColorEntry(event) {
@@ -74,4 +104,4 @@ function handleNewColorEntry(event) {
   })
 }
 
-export { handleExportToCss, downloadCssFile, handleNewColorEntry }
+export { handleDelete, handleExportToCss, handleNewColorEntry }
