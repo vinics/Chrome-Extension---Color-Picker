@@ -76,7 +76,7 @@ The application is composed of 5 main parts:
 ![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-folder%20structure.png)
 
 ### Root
-At the root of the applicatation is set a configuration file for the code editor, setting some definitions like line indent and others:
+At the root of the application is set a configuration file for the code editor, setting some definitions like line indent and others:
 
 ![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/chrome-editorConfig.png)
 
@@ -111,8 +111,48 @@ Colors were separated from the main css file and used as css variables to be eas
 ### > appFunctions.js
 Define all functions that provide business logic of the application.
 
+#### *Function:* downloadCssFile(fileContent)
+Receives the css file content as a string and execute the download by creating an anchor tag element and executing the click event.
+
+#### *Function:* handleColorLabelChange(clickEvent)
+Method that is fired when a ColorDefinitionElement intance htmlElement is clicked on the color name. This event is set on the ColorDefinitionElement class constructor.
+
+![Changing color name](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-changeName-click.png)
+
+This function guards agains naming a color with a name already in use and empty strings.
+
+After change both UI and storage are updated with the new value.
+
+#### *Function:* handleColorDelete(clickEvent)
+Method that is fired when delete button is clicked. It gets the color name and search both in UI and storage, removing that color element.
+
+![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-deleteColorEntry.png)
+
+#### *Function:* handleExportToCss()
+Method that handles the "Get CSS" button. It parses the current color collection on storage to a string format as css variables. When completed, the result is passed to *downloadCssFile* function.
+
+#### *Function:* handleNewColorEntry(event)
+It handles when the button "Add" is clicked saving a new color entry to the color collection.
+
+![Adding colors](https://github.com/vinics/chromeExt-ColorPicker/blob/main/imgs/colorPicker-addColor.png)
+
+By reading the *event* input properties, this function creates ColorDefinitionElement instances which is used to populate the UI.
+
+
 ### > ColorDefinitionElement.js
-Class that represents that a color entry.
+Class that represents a color entry.
+
+This class constructor requires:
+
+* color: A color code (HEX or RGB) as string
+* index: A number used by the application to avoid repeated numbers, used by new added color.This is only used by colors that do not have a label (name) yet
+* label: A color name as string
+* handleColorLabelChange: An event for handling the color name click event
+* handleColorDelete: An event for handling the color delete
+
+The idea of separating this data as a class is to prevent code repeating across the application (DRY)
+
+About removing the logic of the *handleColorLabelChange* and *handleColorDelete* from the class. It makes the application easier to understand and change making the class "uncoupled" from the application.
 
 ### > domAssets.js
 Query all the elements that will be used or referenced from the *index.html*.
