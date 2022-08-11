@@ -5,7 +5,7 @@
   "manifest_version": 3,
   "permissions": ["activeTab", "downloads", "scripting", "storage"],
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "views/index.html"
   },
   "icons": {
     "16": "/imgs/colorPicker-icon-16.png",
